@@ -1,0 +1,96 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title> about </title>
+        <link rel="stylesheet" href="style.css">
+            <!-- Milligram CSS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+        <script defer src="https://d3js.org/d3.v6.min.js" delay></script>
+        <!-- <script defer src="./main.js" delay type="module"></script> -->
+    </head>
+    <body>
+        <div class="dropdown">
+            <button class="dropbtn"><img src="./up_arrow.png"></button>
+            <div class="dropdown-content">
+                <a id="eight">WE ARE 8</a>
+                    <div id="eight-names">
+                        <p>
+                            Hao Niu<br>Paraskevi Prousanidou<br>Zhihao Guo
+                        </p>
+                    </div>
+                <a href="#top">Top</a>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="column">
+                    <h1>About our Project</h1>
+
+                    <h4>Brief project Information</h4>
+
+                    <p> 
+                        For our third Mini Project we decided to use the Earthquakes dataset found on 
+                        <a href = "https://www.kaggle.com/mohitkr05/global-significant-earthquake-database-from-2150bc" target = "_blank">Global Significant Earthquake Database from
+                        2150BC</a>. 
+                        The goal of this project is to discover some interesting facts about earthquakes as to where they usually
+                        occur in terms of countries and continents, the average of the magnitudes, and potential correlations between depth, magnitude and
+                        intensity etc. We believe that this type of opportunity presents an excellent way for us to explore a compelling topic such as this and
+                        educate ourselves through analyzing and graphing the corresponding data on certain aspects of earthquake that we would not have
+                        known otherwise.
+                    </p>
+
+                    <p>
+                        The dataset includes data from 2150 BC to 2020, and some of the variables include the time, location, magnitude, intensity, and depth. In our analysis
+                        we decided to focus in the most recent years, meaning from 1900 to 2020. A screenshot of our data is included below.
+                    </p>
+                    <img src = "images/data.jpg" alt = "Earthquake Data">
+
+                    <p>
+                        First, we performed explanatory analysis on the data by formulating questions like which countries have the biggest magnitude
+                        earthquakes, which countries have the most earthquakes, and what years did the most earthquakes occur. 
+                    </p>
+
+                    <p>
+                        To answer these questions we first thought of creating a world map. One idea was to create a map which would be 
+                        colored in with colors indicating the total number of earthquakes in the country throughout the years in the dataset. 
+                        The visualization would like something like the visualization below.
+                        The second idea for a map visualization was to include bubbles, that idicate the intensity of the earthquakes in that country, 
+                        that however should be done for evey year. Darker colors represent earthquakes with a larger magnitude, lighter ones with smaller magnitude, and white ones
+                        with minimum magnitude. 
+                        Both visualizations are shown below.
+                    </p>
+                 
+                    <img class = first src = 'images/map.jpg'>
+                    <img class = second src = "images/bubble.jpg" width= 50%>
+            
+                    <p>
+                        Finally, we want to explore the relationship between the earthquake’s magnitude and the number of deaths. Additionally, we included colors to indicate the depth of
+                        earthquakes. A very basic plot depicted underneath has already shown some intriguing results. As a final note, we are also looking forward to try and implement cross-filter 
+                        interactive views so that viewers could see the change in one plot being reflected on all other plots instantly. 
+                    </p>
+
+                    <center> <img class = huge src = "images/scatter1.jpg" width = 40%></center>
+
+                    <h4> Team Collaboration</h4>
+
+                    <p> 
+                        The workload was equally distributed to all team members. Initially, we all met up and discussed the data we found and what kind of interactive
+                        visualizations we could create with them. After we started all working together on the actual visualizations. Mark focused on the Map and how to make the map interactive. 
+                        Jefferey focused on the scatter plot, and making it interactive with the map, and Evi focused on the bar graph and the about page. 
+                        Lastly, we all collaborated for the design of our final website.
+                    </p>
+
+
+                    <a href="index.html"><button>Go Back</button></a>
+
+                    
+                </div>
+            </div>
+    
+        </div>
+            
+    </body>
+</html>

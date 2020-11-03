@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Earthquake World Map</title>
+  
+  <style>
+    #container1 {  width: 1200px; height: 900px; position: relative; }
+    /* border:1px dotted blue; */
+  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Earthquake</h1>
+  <div id="container1"></div>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.8/datamaps.all.js"></script>
+  
+
+<script>
+    // example data from server
+    var series = [
+        ["AFG",59],["ALB",56],["ATA",4],["ARG",20],["ARM",13],["AUS",23],
+        ["AUT",7],["AZE",16],["BGD",17],["BEL",1],["BTN",5],["BOL",6],
+        ["BIH",10],["BRA",6],["BGR",18],["GRC",60],["BDI",1],["CMR",2],
+        ["CAN",20],["DZA",57],["CAF",1],["CHL",197],["CHN",606],["COL",79],
+        ["COG",6],["CRI",34],["HRV",48],["CUB",14],["CYP",6],["CZE",1],
+        ["DJI",1],["DOM",18],["ECU",64],["EGY",15],["SLV",38],["ERI",1],
+        ["ETH",13],["FJI",19],["FRA",42],["GUF",1],["GAB",1],["GEO",15],
+        ["DEU",9],["GHA",5],["MUS",19],["GRC",264],["GTM",38],["GIN",1],
+        ["HTI",16],["HND",12],["HUN",5],["ISL",17],["IND",98],["IDN",392],
+        ["IRN",382],["IRQ",24],["IRL",1],["ISR",23],["ITA",326],["JAM",19],
+        ["JPN",406],["JOR",5],["KAZ",10],["KEN",2],["KGZ",14],["LAO",1],
+        ["LBN",14],["LBY",1],["MKD",12],["MDG",1],["MWI",4],["MYS",3],
+        ["MEX",201],["MNG",6],["MNE",9],["MAR",20],["MOZ",3],["MMR",33],
+        ["NPL",16],["NLD",3],["NCL",20],["NZL",66],["NIC",39],["PRK",6],
+        ["NOR",1],["PAK",52],["PAN",23],["PNG",97],["PER",183],["PHL",219],
+        ["POL",6],["PRT",23],["ROU",15],["RUS",150],["RWA",4],["SAU",3],
+        ["SRB",15],["SVK",3],["SVN",22],["SLB",63],["ZAF",14],["KOR",20],
+        ["ESP",25],["LKA",1],["SDN",4],["CHE",31],["SYR",33],["TWN",96],
+        ["TJK",24],["TZA",6],["THA",4],["TGO",2],["TTO",8],["TUN",9],
+        ["TUR",325],["TKM",11],["UGA",3],["GBR",13],["UKR",8],["URY",1],
+        ["USA",306],["UZB",14],["VUT",54],["VEN",66],["VNM",2],["YEM",10],
+        ["ZMB",2]];
+
+
+    // Datamaps expect data in format:
+    // { "USA": { "fillColor": "#42a844", numberOfWhatever: 75},
+    //   "FRA": { "fillColor": "#8dc386", numberOfWhatever: 43 } }
+    var dataset = {};
+
+    // We need to colorize every country based on "numberOfWhatever"
+    // colors should be uniq for every value.
+    // For this purpose we create palette(using min/max series-value)
+    var onlyValues = series.map(function(obj){ return obj[1]; });
+    var minValue = Math.min.apply(null, onlyValues),
+            maxValue = Math.max.apply(null, onlyValues);
+
+    // create color palette function
+    // color can be whatever you wish
+    var paletteScale = d3.scale.linear()
+            .domain([minValue,maxValue])
+            .range(["#EFEFFF","#02386F"]); // blue color
+
+    // fill dataset in appropriate format
+    series.forEach(function(item){ //
+        // item example value ["USA", 70]
+        var iso = item[0],
+                value = item[1];
+        dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
+    });
+
+    // render map
+    new Datamap({
+        element: document.getElementById('container1'),
+        projection: 'mercator', // big world map
+        // countries don't listed in dataset will be painted with this color
+        fills: { defaultFill: '#F5F5F5' },
+        data: dataset,
+        geographyConfig: {
+            borderColor: '#DEDEDE',
+            highlightBorderWidth: 2,
+            // don't change color on mouse hover
+            highlightFillColor: function(geo) {
+                return geo['fillColor'] || '#F5F5F5';
+            },
+            // only change border
+            highlightBorderColor: '#B7B7B7',
+            // show desired information in tooltip
+            popupTemplate: function(geo, data) {
+                // don't show tooltip if country don't present in dataset
+                if (!data) { return ; }
+                // tooltip content
+                return ['<div class="hoverinfo">',
+                    '<strong>', geo.properties.name, '</strong>',
+                    '<br>Number of Earthquakes: <strong>', data.numberOfThings, '</strong>',
+                    '</div>'].join('');
+            }
+        }
+    });
+</script>
+  
+<a href="index.html"><button>Go Back</button></a>
+</body>
+</html>

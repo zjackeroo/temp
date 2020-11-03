@@ -1,25 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title> Earthquakes </title>
 
-    <title>Hello!</title>
-    
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="./style.css">
-    
-    <!-- import the webpage's javascript file -->
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script src="./script.js" defer type="module"></script>
-  </head>  
-  <body>
-    <div class="scatterplot">
-      
-    </div>
-    <div class="barchart">
-      
-    </div>
-  </body>
+        <script src="http://d3js.org/d3.v6.min.js"></script>
+        
+        <!-- Milligram CSS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+        <link rel="stylesheet" href="style.css">
+        <script defer src="https://d3js.org/d3.v6.min.js" delay></script>
+        <script defer src="./script.js" type="module" delay></script>
+        <!-- <script src="./main.js" defer type="module"></script> -->
+    </head>
+    <body>
+        <div class="dropdown">
+            <button class="dropbtn"><img src="./up_arrow.png"></button>
+            <div class="dropdown-content">
+                <a id="eight">WE ARE 8</a>
+                    <div id="eight-names">
+                        <p>
+                            Hao Niu<br>Paraskevi Prousanidou<br>Zhihao Guo
+                        </p>
+                    </div>
+                <a href="#top">Top</a>
+            </div>
+        </div>
+        <div class="container">
+            <h1 id="top"> Mini Project 3</h1>
+            <h3>Earthquakes</h3>
+
+            <div class="scatterplot"></div>
+        
+            <div class="barchart"></div>
+
+            <a href="hello.html"><button>Interactive World Map</button></a>
+            <a href="index-mark.html"><button>Earthquake Country Map</button></a>
+            <a href="about.html"><button>About this project</button></a>
+
+        </div>
+            
+
+            
+            
+    </body>
 </html>

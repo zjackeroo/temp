@@ -1,12 +1,161 @@
-/* CSS files add styling rules to your content */
-
 body {
-    font-family: helvetica, arial, sans-serif;
-    margin: 2em;
-  }
-  
-  h1 {
+    padding-right: 70px;
+    padding-top: 20px; 
+    background-color: white;
+}
+
+h1 {
+    font-size: 50px;
+    margin: 1%;
+}
+h3 {
+    font-size: 30px;
+}
+
+img {
+    padding-bottom: 40px;
+}
+
+div{
+    text-align: justify;
+}
+
+button {
+    border-radius: 100%;
+    border-color: white;
+}
+
+.first {
+    float: left;
+    padding: 15px;
+    width: 50%;
+}
+
+.container {
+    padding-left: 5%;
+    text-align: center;
+}
+
+.scatterplot {
+    padding-left: 30%;
+}
+
+.barchart {
+    padding-left: 30%;
+    border: none;
+}
+
+button {
+    background-color: darkgreen;
+}
+
+
+.dropdown {
+    display: inline-block;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    text-decoration: none;
+    padding: .5%;
+    border-radius: 50%;
+    border-color: transparent;
+    text-align: center;
+}
+
+.dropbtn {
+    width: 100px;
+    background-color: transparent;
+    /* color: white; */
+    /* height: 30px; */
+    /* width: 50px; */
+    /* border-radius: 100%; */
+    /* font-size: 40px; */
+    /* display: inline-block; */
+    /* background-color: blue; */
+    border-color: transparent;
+    text-align: right;
+    transition: transform 1s ease-in-out;
+}
+.dropbtn:hover {
+    background-color: transparent;
+    border-color: transparent;
+}
+.dropbtn img {
+    width: 100%;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    /* background-color: gray; */
+    padding: 1px;
+    border-radius: 5%;
+    bottom: 100%;
+    right: 5px;
+}
+.dropdown-content a {
+    font-size: 14px;
+    font-weight: bold;
+    /* border-style: solid; */
+    /* border-width: 1px; */
+    /* border-color: black; */
+    border-radius: 80%;
+    height: fit-content;
+    margin: 5px;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    color: white;
+    background-color: salmon;
+}
+#eight {
     font-style: italic;
-    color: #373fff;
-  }
-  
+    border-radius: 0%;
+    background-color: #37003c;
+    text-align: center;
+    transition: transform 1s ease-in-out;
+}
+#eight-names {
+    display: none;
+    position: absolute;
+}
+#eight-names p {
+    font-size: 5vw;
+    position: fixed;
+    /* bottom: 5vh; */
+    left: 20vw;
+    right: 20vw;
+    top: 25vh;
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    opacity: 75%;
+    height: fit-content;
+    width: fit-content;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+#eight:hover {
+    cursor: no-drop;
+    transform: rotate(720deg);
+    background-color: #37003c;
+}
+#eight:hover + #eight-names {
+    font-size: 50px;
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: #37003c;
+    /* color: white; */
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown:hover .dropbtn {
+    /* background-color: gray; */
+    transform: rotateX(1080deg);
+}
+.dropdown-content a {
+    text-align: center;
+}
