@@ -14,14 +14,13 @@ export default function ScatterPlot(container){
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    svg.append("g")
+       .attr("class", "x-axis")
+       .attr("transform", `translate(0, ${height})`);
   
-    svg
-      .append("g")
-      .attr("class", "x-axis")
-      .attr("transform", `translate(0, ${height})`);
-  
-    svg.append("g").attr("class", "y-axis");
-  
+    svg.append("g")
+       .attr("class", "y-axis");
     
     const brush = d3.brush()
       .extent([[0,0], [width, height]])
@@ -50,10 +49,10 @@ export default function ScatterPlot(container){
     }
     
     function update(data) {
-      x.domain(d3.extent(data, d => d.EQ_PRIMARY));
-      y.domain(d3.extent(data, d => Math.log(d.DEATHS)));
-  
-      svg
+        x.domain(d3.extent(data, d => d.EQ_PRIMARY));
+        y.domain(d3.extent(data, d => Math.log(d.DEATHS)));
+        
+        svg
         .selectAll("circle")
         .data(data)
         .join("circle")
@@ -63,12 +62,24 @@ export default function ScatterPlot(container){
         .attr("cx", d => x(d.EQ_PRIMARY))
         .attr("cy", d => y(Math.log(d.DEATHS)))
         .attr("r", 2);
-  
-      const xAxis = d3.axisBottom(x);
-      svg.select(".x-axis").call(xAxis);
-  
-      const yAxis = d3.axisLeft(y);
-      svg.select(".y-axis").call(yAxis);
+
+        const xAxis = d3.axisBottom(x);
+        svg.select(".x-axis").call(xAxis)
+            .append("text")
+            .attr("text-anchor", "end")
+            .attr("x", width)
+            .attr("y", height+margin.top)
+            .text("X axis title");
+
+        const yAxis = d3.axisLeft(y);
+        svg.select(".y-axis").call(yAxis)
+            .append("text")
+            .attr("text-anchor", "end")
+            .attr("transform", "rotate(-90)")
+            .attr("y", -margin.left+20)
+            .attr("x", -margin.top)
+            .text("Y axis title")
+
     }
     
     function on(eventname, callback){

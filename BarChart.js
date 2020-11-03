@@ -13,7 +13,7 @@ export default function BarChart(container){
     const svg = d3.select(container)
       .append("svg")
       .attr("width", width+margin.left+margin.right)
-      .attr("height", height+margin.top+margin.bottom)
+      .attr("height", height+margin.top+margin.bottom+50)
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
     
@@ -25,9 +25,13 @@ export default function BarChart(container){
       .attr("class", "y-axis");
     
     function update(data){
-      
-      x.domain(data.map(d => d[0]));
-      y.domain([0, d3.max(data, d => d[1])+10]);
+      x.domain(data.map(d => {
+        return d[0]
+      }));
+      y.domain([0, d3.max(data, d => {
+        console.log(d[1])
+        return d[1]
+      })]);
       
       svg.selectAll("rect")
         .data(data)
@@ -38,15 +42,36 @@ export default function BarChart(container){
         .attr('width', x.bandwidth())
         .attr("height", d=>height-y(d[1]))
       
+    //   const xAxis = d3.axisBottom(x);
       const xAxis = d3.axisBottom(x);
-      svg.select(".x-axis").call(xAxis);
+      svg.select(".x-axis").call(xAxis)
+                            .selectAll("text")
+                            .attr("transform", "translate(-5,0)rotate(-25)")
+                            .style("text-anchor", "end")
+                            .style("font-size", 10)
+                            .style("fill", "black")
       
       const yAxis = d3.axisLeft(y).ticks(4);
       svg.select(".y-axis").call(yAxis);
-      
     }
+    
     return {
       update
     }
     
   }
+
+
+//   if (d[0]<=15) {return "Africa"}
+//   else if (d[0]==20) {return "Antarctica"}
+//   else if (d[0]<=60) {return "Asia"}
+//   else if (d[0]==70) {return "Atlantic Ocean"}
+//   else if (d[0]==80) {return "Bering Sea"}
+//   else if (d[0]==90) {return "Caribbean"}
+//   else if (d[0]==100) {return "Central America"}
+//   else if (d[0]<=130) {return "Europe"}
+//   else if (d[0]==140) {return "Middle East"}
+//   else if (d[0]==150) {return "North America and Hawaii"}
+//   else if (d[0]==160) {return "South America"}
+//   else if (d[0]==170) {return "Central and South Pacific"}
+//   else {return "Others"}
