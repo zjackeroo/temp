@@ -3,7 +3,7 @@
 import BarChart from './BarChart.js';
 import ScatterPlot from './ScatterPlot.js';
 
-d3.csv("cleaned.csv", d3.autoType).then(data => {
+d3.csv("cleaned_2.csv", d3.autoType).then(data => {
   console.log(data);
   
   const scatterPlot = ScatterPlot(".scatterplot");
